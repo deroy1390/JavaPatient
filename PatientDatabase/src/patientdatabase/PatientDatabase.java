@@ -19,16 +19,12 @@ public class PatientDatabase
      * @param args the command line arguments
      */
     
-    private static final String CREATE_TABLE_SQL = "CREATE TABLE employee ("
-            + "EMP_ID int(11) NOT NULL,"
-            + "NAME VARCHAR(45) NOT NULL,"
-            + "DOB DATE NOT NULL,"
-            + "EMAIL VARCHAR(45),"
-            + "DEPT varchar(45) NOT NULL,"
-            + "PRIMARY KEY (EMP_ID)";
+   
     
     public static void main(String[] args) 
     {
+        Connection conn = null;
+        Statement stmt = null;
         try
         {
             String host = "jdbc:derby://localhost:1527/contact";
@@ -38,9 +34,26 @@ public class PatientDatabase
           
            
             
-            Connection con = DriverManager.getConnection( host, uName, uPass );
+            conn = DriverManager.getConnection( host, uName, uPass );
+            System.out.println("Successfully Connected to the database");
             
-            PreparedStatement stmt = con.prepareStatement(CREATE_TABLE_SQL);
+            stmt = conn.createStatement();
+            
+            String SQL = "CREATE TABLE PATIENT " +
+                         "(ID INTEGER not NULL, " +
+                         "First_Name VARCHAR(30), " +
+                         "Last_Name VARCHAR(30), " +
+                         "Age Integer, " +
+                         "PRIMARY KEY (ID))";
+            
+            String INSERT_PATIENT = ("INSERT INTO PATIENT " + "VALUES(1, 'Ethan', 'DeRoy', 19)");
+            
+            
+            stmt.executeUpdate(INSERT_PATIENT);
+            
+            
+            
+            
            
         }
         
@@ -55,3 +68,4 @@ public class PatientDatabase
  
     
 }
+ 
