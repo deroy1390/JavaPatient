@@ -18,6 +18,15 @@ public class PatientDatabase
     /**
      * @param args the command line arguments
      */
+    
+    private static final String CREATE_TABLE_SQL = "CREATE TABLE employee ("
+            + "EMP_ID int(11) NOT NULL,"
+            + "NAME VARCHAR(45) NOT NULL,"
+            + "DOB DATE NOT NULL,"
+            + "EMAIL VARCHAR(45),"
+            + "DEPT varchar(45) NOT NULL,"
+            + "PRIMARY KEY (EMP_ID)";
+    
     public static void main(String[] args) 
     {
         try
@@ -26,11 +35,13 @@ public class PatientDatabase
             String uName = "nbuser";
             String uPass = "nbuser";
             
+          
+           
+            
             Connection con = DriverManager.getConnection( host, uName, uPass );
             
-            String query = "INSERT INTO FRIENDS(First_Name, Last_Name) VALUES (1,'Ethan', 'DeRoy')";
-            
-            PreparedStatement preparedStmt = con.prepareStatement(query);
+            PreparedStatement stmt = con.prepareStatement(CREATE_TABLE_SQL);
+           
         }
         
         catch(SQLException err)
@@ -40,5 +51,7 @@ public class PatientDatabase
         
         
     }
+    
+ 
     
 }
