@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.*;
 
 public class PatientDatabase 
 {
@@ -26,6 +27,10 @@ public class PatientDatabase
             String uPass = "nbuser";
             
             Connection con = DriverManager.getConnection( host, uName, uPass );
+            
+            String query = "INSERT INTO FRIENDS(First_Name, Last_Name) VALUES (1,'Ethan', 'DeRoy')";
+            
+            PreparedStatement preparedStmt = con.prepareStatement(query);
         }
         
         catch(SQLException err)
